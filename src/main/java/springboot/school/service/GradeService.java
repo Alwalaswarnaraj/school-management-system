@@ -2,7 +2,7 @@ package springboot.school.service;
 
 import java.util.List;
 
-import springboot.school.entity.Grade;
+import springboot.school.entities.Grade;
 
 public interface GradeService {
 	
