@@ -8,11 +8,19 @@
 		<version>3.4.1</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
+<<<<<<< HEAD
 	<groupId>com.springboot</groupId>
 	<artifactId>School-Management-System</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>School-Management-System</name>
 	<description>Demo project for Spring Boot</description>
+=======
+	<groupId>springboot</groupId>
+	<artifactId>school</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>school</name>
+	<description>Spring Boot School Management</description>
+>>>>>>> fa83683b4b0d6bd75fa2e10fb671b1589123866a
 	<url/>
 	<licenses>
 		<license/>
@@ -47,8 +55,11 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
+<<<<<<< HEAD
 			<version>1.18.36</version>
 			<scope>provided</scope>
+=======
+>>>>>>> fa83683b4b0d6bd75fa2e10fb671b1589123866a
 			<optional>true</optional>
 		</dependency>
 		<dependency>
