@@ -1,4 +1,4 @@
-package springboot.school.service;
+package com.springboot.School_Management_System.service;
 
 import java.util.List;
 import java.util.Optional;
@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import springboot.school.dao.GradeDao;
-import springboot.school.entity.Grade;
+import com.springboot.School_Management_System.entities.Grade;
+import com.springboot.School_Management_System.repo.GradeDao;
 @Service
 public class GradeServiceImpl implements GradeService{
 	@Autowired

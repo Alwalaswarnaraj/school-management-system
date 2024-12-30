@@ -1,4 +1,4 @@
-package springboot.school.entity;
+package com.springboot.School_Management_System.entities;
 
 import java.io.Serializable;
 

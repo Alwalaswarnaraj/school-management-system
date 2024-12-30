@@ -1,8 +1,8 @@
-package springboot.school.service;
+package com.springboot.School_Management_System.service;
 
 import java.util.List;
 
-import springboot.school.entity.StdClass;
+import com.springboot.School_Management_System.entities.StdClass;
 
 
 public interface ClassService {

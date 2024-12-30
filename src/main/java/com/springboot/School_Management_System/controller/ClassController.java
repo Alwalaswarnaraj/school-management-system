@@ -1,4 +1,4 @@
-package springboot.school.controller;
+package com.springboot.School_Management_System.controller;
 
 import java.util.List;
 
@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import springboot.school.entity.StdClass;
-import springboot.school.service.ClassServiceImpl;
+import com.springboot.School_Management_System.entities.StdClass;
+import com.springboot.School_Management_System.service.ClassServiceImpl;
 
 @RestController
 @RequestMapping("stdclass")
