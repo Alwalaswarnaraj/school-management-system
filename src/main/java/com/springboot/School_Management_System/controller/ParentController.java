@@ -14,13 +14,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-<<<<<<< HEAD:src/main/java/com/springboot/School_Management_System/controller/ParentController.java
+
 import com.springboot.School_Management_System.entities.Parent;
 import com.springboot.School_Management_System.service.ParentServiceImpl;
-=======
-import springboot.school.entities.Parent;
-import springboot.school.service.ParentServiceImpl;
->>>>>>> fa83683b4b0d6bd75fa2e10fb671b1589123866a:src/main/java/springboot/school/controller/ParentController.java
 
 @RestController
 @RequestMapping("parent")

@@ -1,8 +1,5 @@
-<<<<<<<< HEAD:src/main/java/com/springboot/School_Management_System/entities/StdClass.java
+
 package com.springboot.School_Management_System.entities;
-========
-package springboot.school.entities;
->>>>>>>> fa83683b4b0d6bd75fa2e10fb671b1589123866a:src/main/java/springboot/school/entities/StdClass.java
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

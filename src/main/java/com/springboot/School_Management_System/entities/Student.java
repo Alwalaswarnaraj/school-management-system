@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -24,6 +25,14 @@ public class Student {
             this.studentId = UUID.randomUUID().toString().replace("-","").substring(0,10);
         }
     }
+
+    @ManyToOne
+    @JoinColumn(name = "parent_id")
+    private Parent parent;
+
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
+    private List<Grade> grades;
+
     private String studentName;
     private LocalDate dob;
 

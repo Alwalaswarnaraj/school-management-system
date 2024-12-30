@@ -1,24 +1,22 @@
-<<<<<<<< HEAD:src/main/java/com/springboot/School_Management_System/entities/Parent.java
+
 package com.springboot.School_Management_System.entities;
-========
-package springboot.school.entities;
->>>>>>>> fa83683b4b0d6bd75fa2e10fb671b1589123866a:src/main/java/springboot/school/entities/Parent.java
 
 import java.io.Serializable;
+import java.util.List;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table
 public class Parent implements Serializable{
 	@Id
-	String parent_id;
-	String parent_name;
-	String contact_info;
-	String email;
-	String students;
+	private String parent_id;
+	private String parent_name;
+	private String contact_info;
+	private String email;
+
+	@OneToMany(mappedBy = "parent", cascade = CascadeType.ALL)
+	private List<Student> students;
 	public String getParent_id() {
 		return parent_id;
 	}
@@ -43,12 +41,15 @@ public class Parent implements Serializable{
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getStudents() {
+
+	public List<Student> getStudents() {
 		return students;
 	}
-	public void setStudents(String students) {
+
+	public void setStudents(List<Student> students) {
 		this.students = students;
 	}
+
 	@Override
 	public String toString() {
 		return "Parent [parent_id=" + parent_id + ", parent_name=" + parent_name + ", contact_info=" + contact_info

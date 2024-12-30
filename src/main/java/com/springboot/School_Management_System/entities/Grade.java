@@ -1,8 +1,4 @@
-<<<<<<<< HEAD:src/main/java/com/springboot/School_Management_System/entities/Grade.java
 package com.springboot.School_Management_System.entities;
-========
-package springboot.school.entities;
->>>>>>>> fa83683b4b0d6bd75fa2e10fb671b1589123866a:src/main/java/springboot/school/entities/Grade.java
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -18,6 +14,10 @@ public class Grade {
 	int marks;
 	String remarks;
 	String grade_level;
+
+
+
+
 	public String getGrade_id() {
 		return grade_id;
 	}
