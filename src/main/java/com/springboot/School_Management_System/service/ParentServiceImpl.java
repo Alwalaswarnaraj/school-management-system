@@ -1,12 +1,20 @@
-package springboot.school.service;
+package com.springboot.School_Management_System.service;
 
 import java.util.List;
 
+<<<<<<< HEAD:src/main/java/com/springboot/School_Management_System/service/ParentServiceImpl.java
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.springboot.School_Management_System.entities.Parent;
+import com.springboot.School_Management_System.repo.ParentDao;
+=======
 import springboot.school.entities.Parent;
 import springboot.school.repo.ParentDao;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+>>>>>>> fa83683b4b0d6bd75fa2e10fb671b1589123866a:src/main/java/springboot/school/service/ParentServiceImpl.java
 @Service
 public class ParentServiceImpl implements ParentService{
 	
