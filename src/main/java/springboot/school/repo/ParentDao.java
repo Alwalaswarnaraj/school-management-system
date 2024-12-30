@@ -1,7 +1,8 @@
-package springboot.school.dao;
+package springboot.school.repo;
 
-import springboot.school.entity.Parent;
 import org.springframework.data.jpa.repository.JpaRepository;
+
+import springboot.school.entities.Parent;
 
 public interface ParentDao extends JpaRepository<Parent,String>{
 

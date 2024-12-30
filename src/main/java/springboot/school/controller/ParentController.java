@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import springboot.school.entity.Parent;
+import springboot.school.entities.Parent;
 import springboot.school.service.ParentServiceImpl;
 
 @RestController

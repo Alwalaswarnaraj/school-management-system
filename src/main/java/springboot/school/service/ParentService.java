@@ -2,7 +2,7 @@ package springboot.school.service;
 
 import java.util.List;
 
-import springboot.school.entity.Parent;
+import springboot.school.entities.Parent;
 
 public interface ParentService {
 	

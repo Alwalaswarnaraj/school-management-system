@@ -1,4 +1,4 @@
-package springboot.school.entity;
+package springboot.school.entities;
 
 import java.io.Serializable;
 

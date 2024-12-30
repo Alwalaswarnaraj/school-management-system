@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import springboot.school.dao.ClassDao;
-import springboot.school.entity.StdClass;
+import springboot.school.entities.StdClass;
+import springboot.school.repo.ClassDao;
 
 @Service
 public class ClassServiceImpl implements ClassService{

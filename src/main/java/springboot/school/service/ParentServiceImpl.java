@@ -2,11 +2,11 @@ package springboot.school.service;
 
 import java.util.List;
 
-import springboot.school.entity.Parent;
+import springboot.school.entities.Parent;
+import springboot.school.repo.ParentDao;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import springboot.school.dao.ParentDao;
 @Service
 public class ParentServiceImpl implements ParentService{
 	

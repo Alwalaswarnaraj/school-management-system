@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import springboot.school.entity.StdClass;
+import springboot.school.entities.StdClass;
 import springboot.school.service.ClassServiceImpl;
 
 @RestController

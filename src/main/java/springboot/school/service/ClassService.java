@@ -2,7 +2,7 @@ package springboot.school.service;
 
 import java.util.List;
 
-import springboot.school.entity.StdClass;
+import springboot.school.entities.StdClass;
 
 
 public interface ClassService {

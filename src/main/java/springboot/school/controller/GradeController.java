@@ -14,8 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
-import springboot.school.entity.Grade;
+import springboot.school.entities.Grade;
 import springboot.school.service.GradeServiceImpl;
 
 @RestController
