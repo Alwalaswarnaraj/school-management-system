@@ -30,7 +30,7 @@ public class ExamController {
 		 service.addExam(exam);
 	}
 	
-	@GetMapping("/getById/{id}")
+	@GetMapping("/getById/id/{id}")
 	public ResponseEntity<Exam> getExamById(@PathVariable("id") String id) throws ExamNotFoundException{
 		Exam exam = service.getExamById(id);
 		return new ResponseEntity<Exam>(exam, HttpStatus.OK);
@@ -42,17 +42,25 @@ public class ExamController {
 		if(examList != null) {
 			return new ResponseEntity<>(examList, HttpStatus.FOUND);
 		}else 
-		return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 	}
 	
-	@PutMapping("/updateExam")
-	public void updateExamById(@RequestBody Exam exam,@PathVariable String id) throws ExamNotFoundException{
-		service.updateExam(exam, id);
+	@PutMapping("/updateExam/id/{id}")
+	public ResponseEntity<Exam> updateExamById(@RequestBody Exam exam,@PathVariable String id) throws ExamNotFoundException{
+		Exam examUpdated = service.updateExam(exam, id);
+		if(examUpdated != null){
+			return new ResponseEntity<>(examUpdated, HttpStatus.ACCEPTED);
+		}else
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 	}
 	
-	@DeleteMapping("/cancelExam/{id}")
-	public void deleteExamById(@PathVariable("id") String id) throws ExamNotFoundException{
-		service.cancelExam(id);
+	@DeleteMapping("/cancelExam/id/{id}")
+	public ResponseEntity<Exam> deleteExamById(@PathVariable("id") String id) throws ExamNotFoundException{
+		Exam exam = service.cancelExam(id);
+		if(exam != null){
+			return new ResponseEntity<>(exam, HttpStatus.FOUND);
+		}else
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 	}
 
 }

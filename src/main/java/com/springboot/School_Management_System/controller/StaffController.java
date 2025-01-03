@@ -28,25 +28,30 @@ public class StaffController {
 	private StaffService staffService;
 	
 	@PostMapping("/addStaff")
-	public ResponseEntity<Staff> addNewStaff(@RequestBody Staff staff){
-		System.out.println("add new staff member");
+	public void addNewStaff(@RequestBody Staff staff){
 		staffService.addNewStaff(staff);
-		return new ResponseEntity<Staff>(staff,HttpStatus.OK);
 	}
 	
-	 @DeleteMapping("/RemoveStaff/{id}")
-	    public void deleteStaffById(@PathVariable("id") String staffId) throws StaffIdNotFoundException {
-	        staffService.deleteStaffById(staffId);
-	         ResponseEntity.ok().build();
+	 @DeleteMapping("/deleteStaff/id/{id}")
+	    public ResponseEntity<Staff> deleteStaffById(@PathVariable("id") String staffId) throws StaffIdNotFoundException {
+	        Staff staff = staffService.deleteStaffById(staffId);
+			if(staff != null){
+				return new ResponseEntity<>(staff, HttpStatus.FOUND);
+			}else
+				return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 	    }
 	
-	@PutMapping("/staffUpdate")
-	public void updateById(@RequestBody Staff staff,@PathVariable String staff_id) throws StaffIdNotFoundException{
-		staffService.updateStaffById(staff, staff_id);
+	@PutMapping("/staffUpdate/id/{id}")
+	public ResponseEntity<Staff> updateById(@RequestBody Staff staff,@PathVariable String id) throws StaffIdNotFoundException{
+		Staff staffUpdated = staffService.updateStaffById(staff, id);
+		if(staffUpdated != null){
+			return new ResponseEntity<>(staffUpdated, HttpStatus.ACCEPTED);
+		}else
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 	}
 	
 	@GetMapping("/getAll")
-	public ResponseEntity<List<Staff>> getAllStaffDetails(){
+	public ResponseEntity<List<Staff>> getAllStaffDetails() throws StaffIdNotFoundException {
 		List<Staff> staff=staffService.getAllStaffDetails();
 		if(staff != null) {
 			return new ResponseEntity<>(staff, HttpStatus.FOUND);
@@ -55,7 +60,7 @@ public class StaffController {
 		}
 	}
 
-	 @GetMapping("/find/{id}")
+	 @GetMapping("/findStaffById/id/{id}")
 	 public ResponseEntity<Staff> findId(@PathVariable("id") String staffId) throws StaffIdNotFoundException {
 		 Staff staff = staffService.GetById(staffId);
 		 if(staff != null) {

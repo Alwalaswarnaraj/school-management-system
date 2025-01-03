@@ -10,7 +10,7 @@ public interface ExamService {
 	void addExam(Exam exam);
 	Exam getExamById(String id) throws ExamNotFoundException;
 	List<Exam> getAllExams() throws ExamNotFoundException;
-	void updateExam(Exam exam, String id) throws ExamNotFoundException;
-	void cancelExam(String id) throws ExamNotFoundException;
+	Exam updateExam(Exam exam, String id) throws ExamNotFoundException;
+	Exam cancelExam(String id) throws ExamNotFoundException;
 	
 }

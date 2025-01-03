@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,31 +26,43 @@ public class SectionController {
 	private SectionService service;
 	
 	@PostMapping("/add")
-	public ResponseEntity<Section> addSection(@RequestBody Section section){
+	public void addSection(@RequestBody Section section){
 		service.addSection(section);
-		return new ResponseEntity<>(section, HttpStatus.OK);
 	}
 	
-	@GetMapping("/find/{id}")
+	@GetMapping("/findSection/id/{id}")
 	public ResponseEntity<Section> findSectionById(@PathVariable("id") String id) throws SectionNotFoundException{
 		Section section = service.getSection(id);
-		return ResponseEntity.ok(section);
+		if(section != null){
+			return new ResponseEntity<>(section, HttpStatus.FOUND);
+		}else
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 	}
 	
-	@GetMapping("findAll")
+	@GetMapping("/findAllSections")
 	public ResponseEntity<List<Section>> findAll() throws SectionNotFoundException{
 		List<Section> section = service.getAllSections();
-		return new ResponseEntity<List<Section>>(section, HttpStatus.OK);
+		if(section != null){
+			return new ResponseEntity<List<Section>>(section, HttpStatus.FOUND);
+		}else
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 	}
 	
-	@PutMapping("update")
-	public void updateSection(@RequestBody Section section,@PathVariable String id) throws SectionNotFoundException{
-		service.updateSection(section, id);
+	@PutMapping("update/id/{id}")
+	public ResponseEntity<Section> updateSection(@RequestBody Section section,@PathVariable String id) throws SectionNotFoundException{
+		Section sectionUpdated = service.updateSection(section, id);
+		if(sectionUpdated != null){
+			return new ResponseEntity<>(sectionUpdated, HttpStatus.ACCEPTED);
+		}else
+			return new ResponseEntity<>(null, HttpStatus.NOT_ACCEPTABLE);
 	}
 	
-	@DeleteMapping("delete/{id}")
-	public ResponseEntity<Section>deleteSectionById(@PathVariable("id") String id) throws SectionNotFoundException{
-		service.RemoveSection(id);
-		return new ResponseEntity<>(HttpStatus.OK);
+	@DeleteMapping("delete/id/{id}")
+	public ResponseEntity<Section> deleteSectionById(@PathVariable("id") String id) throws SectionNotFoundException{
+		Section section = service.RemoveSection(id);
+		if(section != null){
+			return new ResponseEntity<>(section, HttpStatus.FOUND);
+		}else
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 	}
 }

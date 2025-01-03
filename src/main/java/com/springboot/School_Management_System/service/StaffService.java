@@ -8,8 +8,8 @@ import com.springboot.School_Management_System.Exceptions.StaffIdNotFoundExcepti
 public interface StaffService {
 	
 	void addNewStaff(Staff staff);
-	void deleteStaffById(String staff_id) throws StaffIdNotFoundException;
-	void updateStaffById(Staff staff, String staff_id) throws StaffIdNotFoundException;
-	List<Staff> getAllStaffDetails();
+	Staff deleteStaffById(String staff_id) throws StaffIdNotFoundException;
+	Staff updateStaffById(Staff staff, String staff_id) throws StaffIdNotFoundException;
+	List<Staff> getAllStaffDetails() throws StaffIdNotFoundException;
 	Staff GetById(String staff_id) throws StaffIdNotFoundException;
 }

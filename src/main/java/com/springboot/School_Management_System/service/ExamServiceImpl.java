@@ -31,14 +31,14 @@ public class ExamServiceImpl implements ExamService{
 	public List<Exam> getAllExams() throws ExamNotFoundException {
 		List<Exam> list = examRepo.findAll();
 		if(list.isEmpty()) {
-			throw new ExamNotFoundException("no exam");
+			throw new ExamNotFoundException("no Exam found please add th exam");
 		} else {
 			return list;
 		}
 	}
 
 	@Override
-	public void updateExam(Exam exam, String id) throws ExamNotFoundException {
+	public Exam updateExam(Exam exam, String id) throws ExamNotFoundException {
 		Optional<Exam> updateEx = examRepo.findById(id);
 		if(updateEx.isPresent()) {
 			Exam updateExam = updateEx.get();
@@ -49,16 +49,18 @@ public class ExamServiceImpl implements ExamService{
 			updateExam.setExam_duration(exam.getExam_duration());
 			updateExam.setSubject_id(exam.getSubject_id());
 			updateExam.setTotal_marks(exam.getTotal_marks());
+			return updateExam;
 		} else {
 			throw new ExamNotFoundException("exam not found with id :"+id);
 		}
 	}
 
 	@Override
-	public void cancelExam(String id) throws ExamNotFoundException {
+	public Exam cancelExam(String id) throws ExamNotFoundException {
 		Optional<Exam> exam = examRepo.findById(id);
 		if(exam.isPresent()) {
 			examRepo.deleteById(id);
+			return exam.get();
 		} else {
 			throw new ExamNotFoundException("there is no exam with id: "+id);
 		}

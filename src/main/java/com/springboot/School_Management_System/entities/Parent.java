@@ -3,6 +3,7 @@ package com.springboot.School_Management_System.entities;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.UUID;
 
 import jakarta.persistence.*;
 
@@ -14,6 +15,13 @@ public class Parent implements Serializable{
 	private String parent_name;
 	private String contact_info;
 	private String email;
+
+	@PrePersist
+	public void generateId(){
+		if(this.parent_id == null){
+			this.parent_id = UUID.randomUUID().toString().replace("-","").substring(0,10);
+		}
+	}
 
 	@OneToMany(mappedBy = "parent", cascade = CascadeType.ALL)
 	private List<Student> students;

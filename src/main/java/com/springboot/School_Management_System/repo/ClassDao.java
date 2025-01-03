@@ -5,7 +5,9 @@ import org.springframework.stereotype.Repository;
 
 
 import com.springboot.School_Management_System.entities.StdClass;
+
+import java.util.Optional;
+
 @Repository
 public interface ClassDao extends JpaRepository<StdClass,String>{
-
 }

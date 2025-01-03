@@ -35,7 +35,7 @@ public class StudentServiceImpl implements StudentServiceInterface{
     }
 
     @Override
-    public void updateStudentById(Student student, String id) throws UserNotFoundException {
+    public Student updateStudentById(Student student, String id) throws UserNotFoundException {
         Optional<Student> updateStudent = repo.findByStudentId(id);
         if(updateStudent.isPresent()){
             Student updatedStudent = updateStudent.get();
@@ -46,17 +46,18 @@ public class StudentServiceImpl implements StudentServiceInterface{
             updatedStudent.setGender(student.getGender());
             updatedStudent.setAdmissionDate(student.getAdmissionDate());
 
-            repo.save(updatedStudent);
+            return repo.save(updatedStudent);
 //            updatedStudent.setClassId(student.get);
         }else
             throw new UserNotFoundException("Student Not Found");
     }
 
     @Override
-    public void deleteStudentById(String id) throws UserNotFoundException {
+    public Student deleteStudentById(String id) throws UserNotFoundException {
         if(!repo.existsById(id)){
             throw new UserNotFoundException("Student Not Found");
         }else
             repo.deleteById(id);
+            return repo.findById(id).get();
     }
 }

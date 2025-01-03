@@ -2,6 +2,7 @@ package com.springboot.School_Management_System.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Scanner;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,21 +38,24 @@ public class SectionServiceImpl implements SectionService{
 	}
 
 	@Override
-	public void updateSection(Section section, String id) throws SectionNotFoundException {
+	public Section updateSection(Section section, String id) throws SectionNotFoundException {
 		Optional<Section> updateSec = secRepo.findById(id);
 		if(updateSec.isPresent()) {
 			Section sectionUpdate = updateSec.get();
 			sectionUpdate.setClass_id(section.getClass_id());
 			sectionUpdate.setSection_name(section.getSection_name());
 			sectionUpdate.setSection_id(section.getSection_id());
-		}
+			return sectionUpdate;
+		}else
+			throw new SectionNotFoundException("section with id is not found "+id);
 	}
 
 	@Override
-	public void RemoveSection(String id) throws SectionNotFoundException {
+	public Section RemoveSection(String id) throws SectionNotFoundException {
 		Optional<Section> sec = secRepo.findById(id);
-		if(sec.isEmpty()) {
+		if(sec.isPresent()) {
 			secRepo.deleteById(id);
+			return sec.get();
 		} else {
 			throw new SectionNotFoundException("no section found with id: "+id);
 		}

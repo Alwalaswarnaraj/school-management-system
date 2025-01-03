@@ -9,6 +9,6 @@ public interface SectionService {
 	void addSection(Section section);
 	Section getSection(String id) throws SectionNotFoundException;
 	List<Section> getAllSections() throws SectionNotFoundException;
-	void updateSection(Section section, String id) throws SectionNotFoundException;
-	void RemoveSection(String id) throws SectionNotFoundException;
+	Section updateSection(Section section, String id) throws SectionNotFoundException;
+	Section RemoveSection(String id) throws SectionNotFoundException;
 }

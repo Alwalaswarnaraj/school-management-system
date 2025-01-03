@@ -37,4 +37,14 @@ public class GlobalExceptionHandler {
     public ResponseEntity<String> handleSectionNotFoundException(SectionNotFoundException ex){
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
     }
+
+    @ExceptionHandler(ClassNotFoundException.class)
+    public ResponseEntity<String> handleClassNotFoundException(ClassNotFoundException ex){
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(GradeNotFoundException.class)
+    public ResponseEntity<String> handleGradeNotFoundException(GradeNotFoundException ex){
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
+    }
 }

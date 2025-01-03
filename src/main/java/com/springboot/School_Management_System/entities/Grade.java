@@ -11,12 +11,12 @@ import java.util.UUID;
 @Table
 public class Grade {
 	@Id
-	String grade_id;
-	String student_id;
-	String exam_id;
-	int marks;
-	String remarks;
-	String grade_level;
+	private String grade_id;
+	private String student_id;
+	private String exam_id;
+	private int marks;
+	private String remarks;
+	private String grade_level;
 
 
 	@PrePersist

@@ -2,6 +2,7 @@ package com.springboot.School_Management_System.controller;
 
 import java.util.List;
 
+import com.springboot.School_Management_System.Exceptions.UserNotFoundException;
 import com.springboot.School_Management_System.service.ParentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,29 +26,38 @@ public class ParentController {
 	@Autowired
 	private ParentService service;
 	
-	@PostMapping("add")
-	public ResponseEntity addParents(@RequestBody Parent parent) {
+	@PostMapping("/add")
+	public ResponseEntity<Boolean> addParents(@RequestBody Parent parent) {
 		service.addParent(parent);
-		return new ResponseEntity(true,HttpStatus.OK);
+		return new ResponseEntity<>(true,HttpStatus.OK);
 	}
 	
-	@GetMapping("/get/{id}")
-	public ResponseEntity findParentsById(@PathVariable("id") String parentId) {
+	@GetMapping("/get/id/{id}")
+	public ResponseEntity<Parent> findParentsById(@PathVariable("id") String parentId) throws UserNotFoundException {
 	    Parent parent = service.findParentById(parentId);
-	    return new ResponseEntity<>(parent, HttpStatus.OK);
+	    if(parent != null){
+			return new ResponseEntity<>(parent, HttpStatus.FOUND);
+		}else
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 	}
 
 	
-	@GetMapping("getall")
-	public ResponseEntity findAllParents() {
-		List list=service.findAllParent();
-		return new ResponseEntity<>(list,HttpStatus.OK);
+	@GetMapping("/getAllParents")
+	public ResponseEntity<List<Parent>> findAllParents() throws UserNotFoundException {
+		List<Parent> list=service.findAllParent();
+		if(list.isEmpty()){
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		}else
+			return new ResponseEntity<>(list, HttpStatus.FOUND);
 	}
 	
-	@PutMapping("update")
-	public ResponseEntity updateParents(@RequestBody Parent parent) {
-		service.updateParent(parent);
-		return new ResponseEntity(parent,HttpStatus.OK);
+	@PutMapping("update/id/{id}")
+	public ResponseEntity<Parent> updateParents(@RequestBody Parent parent, @PathVariable String id) throws UserNotFoundException {
+		Parent paren = service.updateParent(parent, id);
+		if(paren != null){
+			return new ResponseEntity<>(paren, HttpStatus.ACCEPTED);
+		}else
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 	}
 	
 //	@DeleteMapping("/delete/{id}")
@@ -56,14 +66,13 @@ public class ParentController {
 //		return new ResponseEntity<>(HttpStatus.OK);
 //	}
 	
-	@DeleteMapping("/delete/{id}")
-	public ResponseEntity<String> deleteParentById(@PathVariable("id") String parentId) {
-	    try {
-	        service.deleteParent(parentId);
-	        return new ResponseEntity<>("Parent deleted successfully!", HttpStatus.OK);
-	    } catch (RuntimeException e) {
-	        return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
-	    }
+	@DeleteMapping("/delete/id/{id}")
+	public ResponseEntity<Parent> deleteParentById(@PathVariable("id") String parentId) throws UserNotFoundException {
+	    Parent parent = service.deleteParent(parentId);
+		if(parent != null){
+			return new ResponseEntity<>(parent, HttpStatus.OK);
+		}else
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 
 }

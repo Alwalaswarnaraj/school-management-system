@@ -17,6 +17,7 @@ public class Exam {
 	private int total_marks;
 
 
+	@PrePersist
 	public void generateID(){
 		if(this.exam_id == null){
 			this.exam_id = UUID.randomUUID().toString().replace("-","").substring(0,10);

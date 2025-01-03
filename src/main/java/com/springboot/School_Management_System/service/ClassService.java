@@ -3,6 +3,7 @@ package com.springboot.School_Management_System.service;
 import java.util.List;
 
 
+import com.springboot.School_Management_System.Exceptions.ClassNotFoundException;
 import com.springboot.School_Management_System.entities.StdClass;
 
 
@@ -10,12 +11,12 @@ public interface ClassService {
 	
 	void addClass(StdClass stdclass);
 	
-	 StdClass findStdClassById(String classId);
+	 StdClass findStdClassById(String classId) throws ClassNotFoundException;
 	
-	List<StdClass> findAllStdClass();
+	List<StdClass> findAllStdClass() throws ClassNotFoundException;
 	
-	void updateStdClass(StdClass stdclass);
+	StdClass updateStdClass(StdClass stdclass, String id) throws ClassNotFoundException;
 	
-	void deleteStdClass(String classId);
+	void deleteStdClass(String classId) throws ClassNotFoundException;
 
 }

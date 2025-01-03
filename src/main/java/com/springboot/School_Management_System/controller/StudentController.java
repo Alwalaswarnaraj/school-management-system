@@ -40,14 +40,22 @@ public class StudentController {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
     }
 
-    @DeleteMapping("update/id/{id}")
-    public void deleteStudentById(@PathVariable String id) throws UserNotFoundException {
-        service.deleteStudentById(id);
+    @DeleteMapping("delete/id/{id}")
+    public ResponseEntity<Student> deleteStudentById(@PathVariable String id) throws UserNotFoundException {
+        Student student = service.deleteStudentById(id);
+        if(student != null){
+            return new ResponseEntity<>(student, HttpStatus.FOUND);
+        }else
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
     }
 
 
     @PutMapping("update/id/{id}")
-    public void updateStudentById(@RequestBody Student student, @PathVariable String id) throws UserNotFoundException {
-        service.updateStudentById(student, id);
+    public ResponseEntity<Student> updateStudentById(@RequestBody Student student, @PathVariable String id) throws UserNotFoundException {
+        Student result = service.updateStudentById(student, id);
+        if(result != null){
+            return new ResponseEntity<>(result, HttpStatus.ACCEPTED);
+        }else
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
     }
 }

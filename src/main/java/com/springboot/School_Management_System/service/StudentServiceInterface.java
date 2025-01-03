@@ -9,7 +9,7 @@ public interface StudentServiceInterface {
     void addStudent(Student student);
     List<Student> getAllStudents() throws UserNotFoundException;
     Student getStudentById(String id) throws UserNotFoundException;
-    void updateStudentById(Student student, String id) throws UserNotFoundException;
-    void deleteStudentById(String id) throws UserNotFoundException;
+    Student updateStudentById(Student student, String id) throws UserNotFoundException;
+    Student deleteStudentById(String id) throws UserNotFoundException;
 //    public void deleteStudentByName(String name);
 }

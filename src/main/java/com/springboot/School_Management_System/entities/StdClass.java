@@ -3,15 +3,26 @@ package com.springboot.School_Management_System.entities;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.PrePersist;
+
+import java.util.UUID;
 
 @Entity
 public class StdClass {
 	@Id
-	String class_id;
-	String class_name;
-	String section_id;
-	String teacher_id;
-	String subject_list;
+	private String class_id;
+	private String class_name;
+	private String section_id;
+	private String teacher_id;
+	private String subject_list;
+
+	@PrePersist
+	public void generateId(){
+		if(this.class_id == null){
+			this.class_id = UUID.randomUUID().toString().replace("-","").substring(0,10);
+		}
+	}
+
 	int student_count;
 	public String getClass_id() {
 		return class_id;

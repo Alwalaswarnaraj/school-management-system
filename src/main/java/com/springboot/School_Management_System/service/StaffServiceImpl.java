@@ -22,15 +22,17 @@ public class StaffServiceImpl implements StaffService{
 	}
 
 	 @Override
-	public void deleteStaffById(String staffId) throws StaffIdNotFoundException {
+	public Staff deleteStaffById(String staffId) throws StaffIdNotFoundException {
 		 Optional<Staff> staff = staffRepo.findById(staffId);
 		 if(staff.isPresent()) {
 			 staffRepo.deleteById(staffId);
-		 }
+			 return staff.get();
+		 }else
+			 throw new StaffIdNotFoundException("Staff with id not Found "+staffId);
 	}
 
 	@Override
-	public void updateStaffById(Staff staff, String staff_id) throws StaffIdNotFoundException {
+	public Staff updateStaffById(Staff staff, String staff_id) throws StaffIdNotFoundException {
 		Optional<Staff> staffOptional = staffRepo.findById(staff_id);
 		if(staffOptional.isPresent()) {
 			Staff toBeUpdated = staffOptional.get();
@@ -38,16 +40,19 @@ public class StaffServiceImpl implements StaffService{
 			toBeUpdated.setStaff_name(staff.getStaff_name());
 			toBeUpdated.setStaff_role(staff.getStaff_role());
 			toBeUpdated.setContact_info(staff.getContact_info());
-			staffRepo.save(toBeUpdated);
+			return staffRepo.save(toBeUpdated);
 		} else {
 			throw new StaffIdNotFoundException("Staff member not found with id :"+staff_id);
 		}
 	}
 
 	@Override
-	public List<Staff> getAllStaffDetails(){
-		
-		return staffRepo.findAll();
+	public List<Staff> getAllStaffDetails() throws StaffIdNotFoundException {
+		List<Staff> list = staffRepo.findAll();
+		if(list.isEmpty()){
+			throw new StaffIdNotFoundException("No staff Found please the staff");
+		}else
+			return list;
 	}
 
 	 @Override

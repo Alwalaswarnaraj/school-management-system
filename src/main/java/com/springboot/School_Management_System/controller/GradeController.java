@@ -2,6 +2,7 @@ package com.springboot.School_Management_System.controller;
 
 import java.util.List;
 
+import com.springboot.School_Management_System.Exceptions.GradeNotFoundException;
 import com.springboot.School_Management_System.service.GradeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -32,8 +33,8 @@ public class GradeController {
 		service.addStudentGrade(grade);
 	}
 	
-	@GetMapping("/get/{id}")
-	public ResponseEntity<Grade> getGrade(@PathVariable String grade_id) {
+	@GetMapping("/get/id/{id}")
+	public ResponseEntity<Grade> getGrade(@PathVariable String grade_id) throws GradeNotFoundException {
 		Grade grade = service.getGradeById(grade_id);
 		if(grade != null){
 			return new ResponseEntity<>(grade, HttpStatus.FOUND);
@@ -52,9 +53,12 @@ public class GradeController {
 //    }
 	
 	@GetMapping("/getAllGrades")
-	public ResponseEntity<List<Grade>> getAllGrades() {
+	public ResponseEntity<List<Grade>> getAllGrades() throws GradeNotFoundException {
 		List<Grade> list=service.getAllGrade();
-		return new ResponseEntity<>(list,HttpStatus.OK);
+		if(list != null){
+			return new ResponseEntity<>(list, HttpStatus.FOUND);
+		}else
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 	}
 	
 //	  @GetMapping("/getall")
@@ -66,16 +70,22 @@ public class GradeController {
 //	        return new ResponseEntity<>(grades, HttpStatus.OK);
 //	    }
 	
-	@PutMapping("/update")
-	public ResponseEntity updateGrades(@RequestBody Grade grade) {
-		service.updateGrade(grade);
-		return new ResponseEntity(HttpStatus.OK);
+	@PutMapping("/update/id/{id}")
+	public ResponseEntity<Grade> updateGrades(@RequestBody Grade grade, @PathVariable String id) throws GradeNotFoundException {
+		Grade result = service.updateGrade(grade, id);
+		if(result != null){
+			return new ResponseEntity<>(result, HttpStatus.ACCEPTED);
+		}else
+			return new ResponseEntity<>(null, HttpStatus.NOT_ACCEPTABLE);
 	}
 	
-	@DeleteMapping("delete/{id}")
-	public ResponseEntity deleteGradeById(@PathVariable String gradeId) {
-		service.deleteGrade(gradeId);
-		return new ResponseEntity(HttpStatus.OK);
+	@DeleteMapping("delete/id/{id}")
+	public ResponseEntity<Grade> deleteGradeById(@PathVariable String gradeId) throws GradeNotFoundException {
+		Grade grade = service.deleteGrade(gradeId);
+		if(grade != null){
+			return new ResponseEntity<>(grade, HttpStatus.FOUND);
+		}else
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 	}
 	
 	

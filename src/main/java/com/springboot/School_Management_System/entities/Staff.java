@@ -1,10 +1,7 @@
 package com.springboot.School_Management_System.entities;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.util.UUID;
 
@@ -19,6 +16,7 @@ public class Staff{
 	private String contact_info;
 
 
+	@PrePersist
 	public void generateId(){
 		if(this.staff_id == null){
 			this.staff_id = UUID.randomUUID().toString().replace("-","").substring(0,10);
