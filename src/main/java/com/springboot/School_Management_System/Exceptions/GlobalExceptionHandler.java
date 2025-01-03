@@ -22,4 +22,19 @@ public class GlobalExceptionHandler {
     public ResponseEntity<String> handleGlobalExceptionException(Exception ex){
         return new ResponseEntity<>("An Unexpected error occur "+ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
+
+    @ExceptionHandler(ExamNotFoundException.class)
+    public ResponseEntity<String> handleExamNotFoundException(ExamNotFoundException ex){
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(StaffIdNotFoundException.class)
+    public ResponseEntity<String> handleStaffIdNotFoundException(StaffIdNotFoundException ex){
+        return new ResponseEntity<>(ex.getMessage() , HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(SectionNotFoundException.class)
+    public ResponseEntity<String> handleSectionNotFoundException(SectionNotFoundException ex){
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
+    }
 }

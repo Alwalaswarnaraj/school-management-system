@@ -30,7 +30,7 @@ public class Student {
     @JoinColumn(name = "parent_id")
     private Parent parent;
 
-    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "student_id", cascade = CascadeType.ALL)
     private List<Grade> grades;
 
     private String studentName;

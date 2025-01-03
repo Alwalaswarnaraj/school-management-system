@@ -2,7 +2,10 @@ package com.springboot.School_Management_System.entities;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
+
+import java.util.UUID;
 
 @Entity
 @Table
@@ -14,6 +17,14 @@ public class Grade {
 	int marks;
 	String remarks;
 	String grade_level;
+
+
+	@PrePersist
+	public void generateId(){
+		if(this.exam_id ==null){
+			this.exam_id = UUID.randomUUID().toString().replace("-", "").substring(0,10);
+		}
+	}
 
 
 

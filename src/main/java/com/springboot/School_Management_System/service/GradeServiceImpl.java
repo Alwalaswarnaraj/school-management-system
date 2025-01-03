@@ -3,6 +3,7 @@ package com.springboot.School_Management_System.service;
 import java.util.List;
 import java.util.Optional;
 
+import com.springboot.School_Management_System.Exceptions.GlobalExceptionHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;

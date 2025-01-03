@@ -37,7 +37,7 @@ public class ClassController {
 		return new ResponseEntity<>(stdclass,HttpStatus.OK);
 	} 
 	
-	@GetMapping("getall")
+	@GetMapping("getAll")
 	public ResponseEntity findAllStdClasses() {
 		List list =service.findAllStdClass();
 		return new ResponseEntity<>(list,HttpStatus.OK);

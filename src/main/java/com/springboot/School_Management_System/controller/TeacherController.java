@@ -1,5 +1,6 @@
 package com.springboot.School_Management_System.controller;
 
+import com.springboot.School_Management_System.Exceptions.GlobalExceptionHandler;
 import com.springboot.School_Management_System.Exceptions.UserNotFoundException;
 import com.springboot.School_Management_System.entities.Teacher;
 import com.springboot.School_Management_System.service.TeacherServiceInterface;

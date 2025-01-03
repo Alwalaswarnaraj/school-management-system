@@ -2,6 +2,7 @@ package com.springboot.School_Management_System.controller;
 
 import java.util.List;
 
+import com.springboot.School_Management_System.service.GradeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +25,7 @@ import com.springboot.School_Management_System.service.GradeServiceImpl;
 public class GradeController {
 	
 	@Autowired
-	GradeServiceImpl service;
+	private GradeService service;
 	
 	@PostMapping("/addStudentGrade")
 	public void addStudentGrade(@RequestBody Grade grade) {
@@ -32,8 +33,12 @@ public class GradeController {
 	}
 	
 	@GetMapping("/get/{id}")
-	public void getGrade(@PathVariable String grade_id) {
-		service.getGradeById(grade_id);
+	public ResponseEntity<Grade> getGrade(@PathVariable String grade_id) {
+		Grade grade = service.getGradeById(grade_id);
+		if(grade != null){
+			return new ResponseEntity<>(grade, HttpStatus.FOUND);
+		}else
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 	}
 	
 //	@GetMapping("/get/{id}")
@@ -46,7 +51,7 @@ public class GradeController {
 //        }
 //    }
 	
-	@GetMapping("getall")
+	@GetMapping("/getAllGrades")
 	public ResponseEntity<List<Grade>> getAllGrades() {
 		List<Grade> list=service.getAllGrade();
 		return new ResponseEntity<>(list,HttpStatus.OK);
@@ -61,7 +66,7 @@ public class GradeController {
 //	        return new ResponseEntity<>(grades, HttpStatus.OK);
 //	    }
 	
-	@PutMapping("update")
+	@PutMapping("/update")
 	public ResponseEntity updateGrades(@RequestBody Grade grade) {
 		service.updateGrade(grade);
 		return new ResponseEntity(HttpStatus.OK);

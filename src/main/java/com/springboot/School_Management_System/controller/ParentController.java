@@ -2,6 +2,7 @@ package com.springboot.School_Management_System.controller;
 
 import java.util.List;
 
+import com.springboot.School_Management_System.service.ParentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,14 +17,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 import com.springboot.School_Management_System.entities.Parent;
-import com.springboot.School_Management_System.service.ParentServiceImpl;
 
 @RestController
 @RequestMapping("parent")
 public class ParentController {
 	
 	@Autowired
-	ParentServiceImpl service;
+	private ParentService service;
 	
 	@PostMapping("add")
 	public ResponseEntity addParents(@RequestBody Parent parent) {

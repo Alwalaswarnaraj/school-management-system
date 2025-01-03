@@ -17,6 +17,8 @@ public class Parent implements Serializable{
 
 	@OneToMany(mappedBy = "parent", cascade = CascadeType.ALL)
 	private List<Student> students;
+
+
 	public String getParent_id() {
 		return parent_id;
 	}
