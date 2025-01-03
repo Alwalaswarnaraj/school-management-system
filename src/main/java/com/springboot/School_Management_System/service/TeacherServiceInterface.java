@@ -11,8 +11,8 @@ public interface TeacherServiceInterface {
     Teacher getTeacherById(String id) throws UserNotFoundException;
     List<Teacher> getAllTeachers() throws UserNotFoundException;
 
-    void updateTeacherById(Teacher teacher, String id) throws UserNotFoundException;
-    void deleteTeacherById(String id) throws UserNotFoundException;
+    Teacher updateTeacherById(Teacher teacher, String id) throws UserNotFoundException;
+    Teacher deleteTeacherById(String id) throws UserNotFoundException;
 
 //    void deleteTeacherByName();
 }

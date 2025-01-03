@@ -35,7 +35,7 @@ public class TeacherServiceImpl implements TeacherServiceInterface{
     }
 
     @Override
-    public void updateTeacherById(Teacher teacher, String id) throws UserNotFoundException {
+    public Teacher updateTeacherById(Teacher teacher, String id) throws UserNotFoundException {
         Optional<Teacher> updateTeacher = repo.findByTeacherID(id);
         if(updateTeacher.isPresent()){
             Teacher teacherUpdated = updateTeacher.get();
@@ -44,16 +44,17 @@ public class TeacherServiceImpl implements TeacherServiceInterface{
             teacherUpdated.setDob(teacher.getDob());
             teacherUpdated.setAddress(teacher.getAddress());
             teacherUpdated.setContact(teacher.getContact());
-            repo.save(teacherUpdated);
+            return repo.save(teacherUpdated);
         }else
             throw new UserNotFoundException("Teacher Not Found With "+id+" id");
     }
 
     @Override
-    public void deleteTeacherById(String id) throws UserNotFoundException {
+    public Teacher deleteTeacherById(String id) throws UserNotFoundException {
         Optional<Teacher> teacher = repo.findByTeacherID(id);
         if(teacher.isPresent()){
             repo.deleteById(id);
+            return teacher.get();
         }else
             throw new UserNotFoundException("Teacher nor Found With "+id+" id");
     }
